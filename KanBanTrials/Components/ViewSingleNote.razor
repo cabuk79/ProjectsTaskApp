@@ -1,0 +1,52 @@
+﻿@using KanBanTrials.Models;
+@using KanBanTrials.Data;
+@inject IConfiguration Configuration;
+
+@Note.NoteId<br />
+@Note.NoteDetail<br />
+
+@if(Note.Files.Count == 0)
+{
+    <h4>No files can be found.</h4>
+}
+else
+{
+    @foreach(var file in Note.Files)
+    {
+        @file.FilePath
+    }
+}
+
+
+@code {
+    [Parameter]
+    public string NoteId { get; set; }
+    private TaskNote Note { get; set; }
+    private List<TaskItem> Tasks { get; set; }
+    private Json jsonCode;
+
+
+    protected override async void OnInitialized()
+    {
+        jsonCode = new();
+
+        Tasks = jsonCode.Deseralize(Configuration["MySettings:FileLocationCurrentJson"]);
+
+        //find the note
+        foreach(var taskItem in Tasks)
+        {
+            if(taskItem.TaskNotes != null)
+            {
+                foreach(var noteItem in taskItem.TaskNotes)
+                {
+                    if (noteItem.NoteId.ToString() == NoteId)
+                    {
+                        Note = noteItem;
+                        return;
+                    }
+                } 
+            }
+            
+        }
+    }
+}

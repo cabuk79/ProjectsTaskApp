@@ -1,0 +1,193 @@
+﻿@using KanBanTrials.Models;
+@using Microsoft.AspNetCore.Hosting;
+@inject IConfiguration Configuration;
+@inject IWebHostEnvironment hostenvironment;
+
+
+<div class="modal fade show" id="editTask" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Edit Task</h4>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@Task" OnValidSubmit="@OnSubmit">
+                <DataAnnotationsValidator />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-lg-12">
+                                    <label class="form-label">Task Id</label><br />
+                                    <span class="task-id-span">@Task.TaskId</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 10px">
+                                <div class="col-lg-12">
+                                    <label class="form-label">Task Title</label>
+                                    <InputText class="task-name-span form-control" @bind-Value="@Task.TaskName"></InputText>
+                                    <ValidationMessage For="() => Task.TaskName" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <label>Status</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <InputRadioGroup @bind-Value="@Task.Status">
+                                        @foreach(var item in Enum.GetValues(typeof(TaskStatusInfo)))
+                                        {
+                                            if (item.ToString() != "New")
+                                            {
+                                                <div class="form-check form-check-inline">
+                                                    <InputRadio class="form-check-input" Value="@item.ToString()" />
+                                                    <label class="form-check-label">
+                                                        @item
+                                                    </label>
+                                                </div>
+                                            }
+                                        }
+                                    </InputRadioGroup>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="form-label">Description</label>
+                                    <InputTextArea class="task-description-span form-control" @bind-Value="@Task.Description"></InputTextArea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="form-label">Files</label>
+                                    
+                                        @foreach(var file in GetAllFiles)
+                                        {                                  
+                                            <a href="@file" target=”_blank” class="form-control">@Path.GetFileNameWithoutExtension(file)</a>
+                                        }
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="complete-section">
+                                        <input class="completed-chk" type="checkbox" @bind-value=@Task.Completed>Completed</input>
+                                        <label class="form-label">Mark As Completed</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="submit-button"><button type="submit" class="submit-btn btn btn-primary">Update/Close</button></span>
+                                @*  <span class="close-button"><button type="button" class="close-btn btn btn-primary" @onclick="@ModalClose">Close</button></span> *@
+                                <span><button type="button" class="close-btn btn btn-primary" @onclick="@OpenNewNoteDialog">Add Note</button></span>
+                                <span><button type="button" class="close-btn btn btn-primary" @onclick="@OpenAllNotesDialog">View Notes</button></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>  
+                </EditForm>              
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (OpenNewNoteBox)
+{
+    <KanBanTrials.Components.AddTaskNoteDialog OnClose="ClosedTaskNoteDialog" TaskNote="@newNote"
+                                               ReturnNote="AddNewNote" TaskId="Task.TaskId" />
+}
+
+@if(OpenAllNotesdialog)
+{
+    <KanBanTrials.Components.ViewTaskNotes OnClose="CloseAllNotesDialog"
+                    Notes="@Task.TaskNotes" />
+}
+
+@code {
+    [Parameter]
+    public TaskItem Task { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnClose { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnSave { get; set; }
+    [Parameter]
+    public EventCallback<TaskItem> ReturnTask { get; set; }
+
+    private List<string> GetAllFiles = new();
+
+    public TaskNote newNote { get; set; } = new();
+
+    private bool OpenNewNoteBox { get; set; } = false;
+    private bool OpenAllNotesdialog { get; set; } = false;
+
+
+    protected override async void OnInitialized()
+    {
+        string path = Path.Combine(
+               Configuration["MySettings:TaskFileStorageTopLevel"],
+               Task.TaskId.ToString());
+
+        var doesFolderExist = Directory.Exists($@"{path}");
+
+        if(doesFolderExist == true)
+        {
+            var findFiles = Directory.GetFiles($@"{path}");
+
+            foreach(var file in findFiles)
+            {
+                string fileName = Path.GetFileName(file); // Get the filename with extension
+                string fileExtension = Path.GetExtension(file);
+                GetAllFiles.Add($@"/{Task.TaskId.ToString()}/{fileName}");
+            }
+        }
+
+    }
+
+    private void OnSubmit()
+    {
+        ReturnTask.InvokeAsync(Task);
+        OnSave.InvokeAsync(true);
+
+        ModalClose();
+    }
+
+    public void AddNewNote()
+    {
+        if (Task.TaskNotes == null)
+        {
+            Task.TaskNotes = new();
+        }
+
+        if(newNote.NoteDetail != null)
+        {
+            Task.TaskNotes.Add(newNote);
+        }       
+    }
+
+    public void ModalClose()
+    {
+        OnClose.InvokeAsync(false);
+    }
+
+    public void OpenNewNoteDialog()
+    {
+        OpenNewNoteBox = true;
+    }
+
+    public void ClosedTaskNoteDialog()
+    {
+        OpenNewNoteBox = false;
+    }
+
+    public void OpenAllNotesDialog()
+    {
+        OpenAllNotesdialog = true;
+    }
+
+    public void CloseAllNotesDialog()
+    {
+        OpenAllNotesdialog = false;
+    }
+
+}

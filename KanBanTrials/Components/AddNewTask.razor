@@ -1,0 +1,135 @@
+﻿@using KanBanTrials.Models;
+@using System.ComponentModel.DataAnnotations;
+@inject IConfiguration Configuration;
+
+<div class="modal fade show" id="editTask" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Add New Task</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <EditForm Model="@Task" OnValidSubmit="@SaveNewTask">
+                        <DataAnnotationsValidator />
+                            <div class="row">
+                                <div class="col-lg-12" style="margin-bottom: 30px">
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-lg-12" style="margin-bottom: 30px">
+                                                <label class="form-label">Task Name</label>
+                                                <InputText class="form-control" @bind-Value="Task.TaskName" id="TaskName" /> 
+                                                <ValidationMessage For="() => Task.TaskName" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12" style="margin-bottom: 30px">
+                                                <div class="row" style="margin-bottom: 5px">
+                                                    <label class="form-label">Catagory</label>
+                                                </div>
+                                                <div class="row" style="margin-left: 5px">
+                                                    <InputRadioGroup @bind-Value="@Task.Catagory">
+                                                        @foreach (var item in Enum.GetValues(typeof(TaskCatagory)))
+                                                        {
+                                                            <div class="form-check form-check-inline">
+                                                                <InputRadio class="form-check-input" Value="@item.ToString()" />
+                                                                <label class="form-check-label">
+                                                                    @item
+                                                                </label>
+                                                            </div>                                                              
+                                                        }
+                                                    </InputRadioGroup>
+                                                </div>  
+                                            </div>
+                                        </div>                         
+                                        <div class="row">
+                                            <div class="col-lg-12" style="margin-bottom: 30px">
+                                                <label class="form-label">Description</label>
+                                                <InputTextArea class="form-control" @bind-Value="Task.Description" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <InputFile OnChange="@LoadFiles" class="form-control" multiple />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <span class="submit-button"><button type="submit" class="submit-btn btn btn-primary">Save</button></span>
+                                            <span class="close-button"><button type="button" class="close-btn btn btn-primary" @onclick="@ModalClose">Close</button></span>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>       
+                        </EditForm>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback<bool> OnClose { get; set; }
+    // [Parameter]
+    // public EventCallback<TaskItem> TaskFilled { get; set; }
+    [Parameter]
+    public EventCallback<TaskItem> TaskReturn { get; set; }
+
+    [Parameter]
+    public TaskItem Task { get; set; }
+
+    private List<IBrowserFile> Files { get; set; } = new();
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (var file in e.GetMultipleFiles())
+        {
+            Files.Add(file);
+        }
+
+    }
+
+    private async Task SaveNewTask()
+    {
+        //create a GUID for the new task
+        Task.TaskId = Guid.NewGuid();
+        Task.DateRaised = DateOnly.FromDateTime(DateTime.Now);
+        Task.Status = "New";
+
+        if(Files.Count > 0)
+        {
+            foreach (var file in Files)
+            {
+                string newFileName = Path.ChangeExtension(
+                    Path.GetRandomFileName(),
+                    Path.GetExtension(file.Name));
+
+                string path = Path.Combine(
+                    Configuration["MySettings:TaskFileStorageTopLevel"],
+                    Task.TaskId.ToString(),
+                    newFileName);
+
+                Directory.CreateDirectory(Path.Combine(
+                    Configuration["MySettings:TaskFileStorageTopLevel"],
+                    Task.TaskId.ToString()));
+
+                await using FileStream fs = new(path, FileMode.Create);
+                await file.OpenReadStream(maxAllowedSize: 1024 * 5000000000).CopyToAsync(fs); //upload upto 5GB
+            }
+        }
+        
+
+        TaskReturn.InvokeAsync(Task);
+
+        Task = new();
+    }
+
+    public void ModalClose()
+    {
+        OnClose.InvokeAsync(false);
+    }
+}

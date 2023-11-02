@@ -1,0 +1,67 @@
+﻿@using KanBanTrials.Models;
+@inject IConfiguration Configuration;
+
+<div class="modal fade show" id="editTask" style="display:block" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Add TaskNote</h4>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@TaskNote" OnValidSubmit="@OnSubmit">
+                    <DataAnnotationsValidator />
+                    <div class="row" style="margin-bottom: 10px">
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <div class="row" style="margin-bottom: 10px">
+                                    <div class="col-lg-12">
+                                        <label class="form-label">Note Detail</label>
+                                        <InputTextArea class="form-control" @bind-Value="TaskNote.NoteDetail"></InputTextArea>
+                                        <ValidationMessage For="() => TaskNote.NoteDetail" />
+                                    </div>
+                                </div>                               
+                                <div class="row">
+                                    <span class="submit-button"><button type="submit" class="submit-btn btn btn-primary">Add</button></span>  
+                                    <span class="submit-button"><button type="submit" class="submit-btn btn btn-primary" @onclick="@ModalClose">Close</button></span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public Guid TaskId { get; set; }
+    [Parameter]
+    public EventCallback<TaskNote> ReturnNote { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnClose { get; set; }
+    [Parameter]
+    public TaskNote TaskNote { get; set; }
+
+
+    private async Task CreateNewTaskNote()
+    {
+        TaskNote.NoteId = Guid.NewGuid();
+        TaskNote.TaskId = TaskId;
+        TaskNote.DateRaised = DateOnly.FromDateTime(DateTime.Now);   
+    }
+
+    private void OnSubmit()
+    {
+        CreateNewTaskNote();
+        ReturnNote.InvokeAsync(TaskNote);
+        ModalClose();
+    }
+
+    public void ModalClose()
+    {
+        OnClose.InvokeAsync(false);
+    }
+}

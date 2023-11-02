@@ -1,0 +1,63 @@
+﻿.task-main-container {
+    
+}
+
+.draggable {
+    margin-bottom: 10px;
+    padding: 10px 25px;
+    /*border: 1px solid #424d4c;*/
+    cursor: grab;
+    background: #023047;
+    color: #ffffff;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.draggable.active {
+    cursor: grabbing;
+}
+
+.dropzone {
+    padding: .75rem;
+    min-height: 40rem;   
+}
+
+.priority {
+    min-width: 20rem;
+    overflow-y: scroll;
+    height: 15rem;
+    border: 2px solid black;
+    margin-right: 10px;
+}
+
+.drop-zone-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cata {
+    background-color: #FB8500;
+    padding: 0.5em;
+}
+
+.status {
+    background-color: deepskyblue;
+    padding: 0.5em;
+}
+
+.overdue {
+    background-color: red;
+    padding: 0.5em;
+    margin-left: 5px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.priority::-webkit-scrollbar {
+    display: none;
+}
+
+ /*Hide scrollbar for IE, Edge and Firefox */
+.priority {
+    -ms-overflow-style: none;  /*IE and Edge */
+    scrollbar-width: none;  /*Firefox */
+}

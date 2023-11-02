@@ -1,0 +1,266 @@
+﻿@page "/"
+@using KanBanTrials.Data;
+@inject IConfiguration Configuration;
+
+
+@using KanBanTrials.Models
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject NavigationManager NavManager;
+
+<div class="header-container">
+    <span class="header-title">Projects Tasks Overview</span>
+    <button class="btn btn-primary" style="background-color: #FB8500; color: white; font-weight: bold" @onclick="OpenEditDialog">Add New Task</button>
+</div>
+
+
+
+<div class="dropzone-main-container">
+    @if(TaskItems == null)
+    {
+        <div><h4>No tasks can be found!</h4></div>
+    }
+    else
+    {
+        <div class="div1">
+            <DropZone Catagory="TaskCatagory.Craig"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div2">
+            <DropZone Catagory="TaskCatagory.Myles"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div8">
+            <DropZone Catagory="TaskCatagory.Jo"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div7">
+            <DropZone Catagory="TaskCatagory.TechDrawings"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div3">
+            <DropZone Catagory="TaskCatagory.ComponentDrawings"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div4">
+            <DropZone Catagory="TaskCatagory.Quotes"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div5">
+            <DropZone Catagory="TaskCatagory.ECNs"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div6">
+            <DropZone Catagory="TaskCatagory.Misc"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+        <div class="div9">
+            <DropZone Catagory="TaskCatagory.PressDrgUpdate"
+                      TaskItems="TaskItems"
+                      OnDrop="OnDrop"
+                      OnStartDrag="OnStartDrag"
+                      CallbackOnDialogSaved="SaveTasksFromDialog" />
+        </div>
+    }   
+</div>
+
+@if (OpenEditDialogBox)
+{
+    <KanBanTrials.Components.AddNewTask OnClose="ClosedTaskDialog"
+            TaskReturn="AddNewTask" Task="@NewTask" />
+}
+
+@code {
+    public TaskItem CurrentItem;
+    private List<TaskItem> TaskItems;
+
+
+    private Json jsonCode;
+    private HubConnection hubConnection;
+
+    public TaskItem NewTask = new(); //fior the add new dialog
+
+    protected override async void OnInitialized()
+    {
+        base.OnInitialized();
+
+        TaskItems = new();
+
+        jsonCode = new();
+        LoadTasks();
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavManager.ToAbsoluteUri("/taskupdate"))
+            .WithAutomaticReconnect()
+            .Build();
+
+        //Recives the messages from the server
+        hubConnection.On<TaskItem>("ReceiveUpdatedTask", (CurrentItem) =>
+        {
+            //TaskItems.Add(new TaskItem { Priority = TaskPrority.High, TaskName = "Testing" });
+            UpdateTasksLists(CurrentItem);
+            LoadTasks();
+            NewTask = new();
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On("RecievedAllTasksUpdate", () =>
+        {
+            LoadTasks();
+            InvokeAsync(StateHasChanged);
+        });
+
+        //Connect to he server hub
+        await hubConnection.StartAsync();    
+    }
+
+    private async void SaveTasksFromDialog()
+    {
+        List<TaskItem> TasksCompleted = new();
+
+        //check if any items in the list are completed and if so remove them
+        for (int i = 0; i < TaskItems.Count; i++)
+        {
+            var task = TaskItems[i];
+            if(task.Completed == true)
+            {
+                TaskItems.Remove(task);
+                TasksCompleted.Add(task);
+            }
+        }
+
+        if(TasksCompleted.Count > 0)
+        {
+            jsonCode.SeralizeAndSaveFileList(TasksCompleted, Configuration["MySettings:FileLocationCompleteJson"], false);
+            TasksCompleted.Clear();
+        }
+
+        await UpdateTasks();
+        //await hubConnection.SendAsync("UpdateTasks");
+    }
+
+    private async Task UpdateTasks()
+    {
+        //check if any items in the list are completed and if so remove them then update both the current tasks and the completed tasks
+        //await hubConnection.SendAsync("UpdateTask", CurrentItem);
+        jsonCode.SeralizeAndSaveFileList(TaskItems, Configuration["MySettings:FileLocationCurrentJson"], true);
+        await hubConnection.SendAsync("UpdateTasks");
+
+    }
+
+    private async Task SaveTasks()
+    {
+        //check if any items in the list are completed and if so remove them then update both the current tasks and the completed tasks
+        jsonCode.SeralizeAndSaveFileList(TaskItems, Configuration["MySettings:FileLocationCurrentJson"], true);
+        await hubConnection.SendAsync("UpdateTask", NewTask);
+              
+    }
+
+    private void LoadTasks()
+    {
+        TaskItems = jsonCode.Deseralize(Configuration["MySettings:FileLocationCurrentJson"]);
+
+        //check through the list and if any of the tasks are older than 7 days and the statusis set to New then change to be blank
+        if(TaskItems != null)
+        {
+            var todaysDate = DateOnly.FromDateTime(DateTime.Now);
+            foreach(var item in TaskItems)
+            {
+                if (item.Status == "New" && todaysDate > item.DateRaised.AddDays(7))
+                {
+                    item.Status = null;
+                }
+
+                //f over 7 days and status still says new change it to ToStart
+                if (todaysDate > item.DateRaised.AddDays(7) && item.Status == TaskStatusInfo.New.ToString())
+                {
+                    item.Status = TaskStatusInfo.ToStart.ToString();
+                }
+
+                //check to overdue status
+                if (todaysDate > item.DateRaised.AddDays(30))
+                {
+                    item.OverDueStatus = "Over30Days";
+                }
+            }           
+        }
+    }
+
+    private void UpdateTasksLists(TaskItem taskItem)
+    {
+        if(taskItem != null)
+        {
+            foreach (var item in TaskItems)
+            {
+                if (item.TaskId == taskItem.TaskId)
+                {
+                    item.Catagory = taskItem.Catagory;
+                }
+            }
+        }       
+    }
+
+    private void OnStartDrag(TaskItem item)
+    {
+        CurrentItem = item;
+    }
+
+    private async Task OnDrop(TaskCatagory catagory)
+    {
+        CurrentItem.Catagory = catagory.ToString();
+        await hubConnection.SendAsync("UpdateTask", CurrentItem);
+        //Update the Json file where saved so that anyone starting the app will see the current live data
+        SaveTasks();
+    }
+
+    public bool OpenEditDialogBox { get; set; } = false;
+
+    public void OpenEditDialog()
+    {
+        OpenEditDialogBox = true;
+    }
+
+    public void ClosedTaskDialog()
+    {
+        OpenEditDialogBox = false;
+    }
+
+    public void AddNewTask()
+    {
+        if(TaskItems == null)
+        {
+            TaskItems = new();
+        }
+
+        TaskItems.Add(NewTask);
+        SaveTasks();        
+    }
+
+
+}
+}
+
+@* d-flex p-6 *@

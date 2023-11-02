@@ -1,0 +1,15 @@
+﻿@page "/notedetail/{NoteId}"
+@using KanBanTrials.Models;
+
+<h4>Testing</h4>
+
+@NoteId
+
+<KanBanTrials.Components.ViewSingleNote NoteId="@NoteId" />
+
+@code {
+    [Parameter]
+    public string NoteId { get; set; } 
+
+
+}

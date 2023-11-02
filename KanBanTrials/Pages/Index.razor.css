@@ -1,0 +1,25 @@
+﻿.header-container {
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+    background-color: #023047;
+    padding: 10px;
+    margin-bottom: 8px; 
+}
+
+.header-title {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: white;
+}
+
+.dropzone-main-container {
+    display: grid;
+    width: 100%;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+    grid-template-areas:
+        "div1 div2 div8"
+        "div3 div4 div5"
+        "div6 div7 div5"
+}

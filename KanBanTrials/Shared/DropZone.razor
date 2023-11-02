@@ -1,0 +1,116 @@
+﻿@using KanBanTrials.Models
+@using Microsoft.AspNetCore.SignalR;
+@using Microsoft.AspNetCore.SignalR.Client;
+@inject NavigationManager NavManager;
+@using KanBanTrials.Data;
+@inject IConfiguration Configuration;
+@* @inject IJSRuntime JSRuntime
+@inject IHubContext<KanbanHub> KanbanHubContext *@
+
+<div class="task-main-container">
+    <h4>@Catagory.ToString()</h4>
+    <div class="priority">
+        <div class="dropzone"
+             ondragover="event.preventDefault();"
+            @ondrop="OnDropHandler">
+            @if(TaskItems != null)
+            {
+                foreach (var item in TaskItems.Where(q => q.Catagory == Catagory.ToString()))
+                {
+                    <div class="draggable"
+                        draggable="true"
+                        @ondragstart="@(() => OnDragStartHandler(item))"
+                        @onclick="@(() => OpenEditDialog(item))">
+                        <div class="drop-zone-content">
+                            <span>@item.TaskName</span>
+                            <div class="cat-status-container">
+                                <span class="status badge badge-secondary">@item.Status</span>
+                                <span class="cata badge badge-secondary">@item.Catagory</span>
+                                @if (item.OverDueStatus != "")
+                                {
+                                    <span class="overdue badge badge-secondary">@item.OverDueStatus</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }              
+            }
+        </div>
+    </div>
+</div>
+
+@if (OpenEditDialogBox)
+{
+    <KanBanTrials.Components.EditTaskDetails Task="@CurrentSelectedTaskItem"
+        OnClose="ClosedTaskDialog" OnSave="UpdatedTask" ReturnTask="EditReturnTask" />
+}
+
+
+@code {
+    [Parameter]
+    public List<TaskItem> TaskItems { get; set; }
+    [Parameter]
+    public TaskCatagory Catagory { get; set; }
+    [Parameter]
+    public EventCallback<TaskCatagory> OnDrop { get; set; }
+    [Parameter]
+    public EventCallback<TaskItem> OnStartDrag { get; set; }
+    [Parameter]
+    public Action CallbackOnDialogSaved { get; set; }
+
+    public TaskItem CurrentSelectedTaskItem { get; set; } = new();
+    private Json jsonCode;
+
+    protected override async void OnInitialized()
+    {
+        base.OnInitialized();
+
+        jsonCode = new();
+    }
+
+
+    private async Task OnDropHandler()
+    {
+        OnDrop.InvokeAsync(Catagory);
+
+    }
+
+    private async Task OnDragStartHandler(TaskItem task)
+    {
+        OnStartDrag.InvokeAsync(task);
+
+    }
+
+    private void UpdatedTask()
+    {
+        CallbackOnDialogSaved?.Invoke();
+        OpenEditDialogBox = false;
+    }
+
+    public bool OpenEditDialogBox { get; set; } = false;
+
+    public void OpenEditDialog(TaskItem taskItem)
+    {
+        CurrentSelectedTaskItem = taskItem;
+        OpenEditDialogBox = true;
+    }
+
+    public void ClosedTaskDialog()
+    {     
+        //CallbackOnDialogSaved?.Invoke();
+        OpenEditDialogBox = false;
+    }
+
+    public void EditReturnTask()
+    {
+        if(CurrentSelectedTaskItem.Completed == true)
+        {
+            UpdateAllTasksFromTaskEdit();
+        }
+    }
+
+    private void UpdateAllTasksFromTaskEdit()
+    {
+        jsonCode.SeralizeAndSaveFileList(TaskItems, Configuration["MySettings:FileLocationCurrentJson"], true);
+    }
+}
