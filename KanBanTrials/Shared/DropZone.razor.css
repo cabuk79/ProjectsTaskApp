@@ -2,6 +2,35 @@
     
 }
 
+.task-header-container {
+    display: flex;
+    vertical-align: central;
+}
+
+.task-header-container > span {
+    margin-left: 5px;
+}
+
+.journal-icon {
+    position: relative;
+}
+
+.count-container {
+    margin-left: 10px;
+}
+
+.cat-notes-container {
+    display: flex;
+}
+
+.task-note-count {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+}
+
 .draggable {
     margin-bottom: 10px;
     padding: 10px 25px;

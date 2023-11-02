@@ -91,6 +91,35 @@
     
 }
 
+.task-header-container[b-704d56869o] {
+    display: flex;
+    vertical-align: central;
+}
+
+.task-header-container > span[b-704d56869o] {
+    margin-left: 5px;
+}
+
+.journal-icon[b-704d56869o] {
+    position: relative;
+}
+
+.count-container[b-704d56869o] {
+    margin-left: 10px;
+}
+
+.cat-notes-container[b-704d56869o] {
+    display: flex;
+}
+
+.task-note-count[b-704d56869o] {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 2px;
+    right: 5px;
+}
+
 .draggable[b-704d56869o] {
     margin-bottom: 10px;
     padding: 10px 25px;
