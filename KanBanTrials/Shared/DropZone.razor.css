@@ -21,6 +21,7 @@
 
 .cat-notes-container {
     display: flex;
+    justify-content: end;
 }
 
 .task-note-count {
