@@ -5,7 +5,7 @@
 
 
 <div class="modal fade show" id="editTask" style="display:block" aria-modal="true" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-body">
                 <h4>Edit Task</h4>
@@ -14,7 +14,7 @@
                 <EditForm Model="@Task" OnValidSubmit="@OnSubmit">
                 <DataAnnotationsValidator />
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-5">
                         <fieldset>
                             <div class="row" style="margin-bottom: 10px">
                                 <div class="col-lg-12">
@@ -81,10 +81,31 @@
                                 <span class="submit-button"><button type="submit" class="submit-btn btn btn-primary">Update/Close</button></span>
                                 @*  <span class="close-button"><button type="button" class="close-btn btn btn-primary" @onclick="@ModalClose">Close</button></span> *@
                                 <span><button type="button" class="close-btn btn btn-primary" @onclick="@OpenNewNoteDialog">Add Note</button></span>
-                                <span><button type="button" class="close-btn btn btn-primary" @onclick="@OpenAllNotesDialog">View Notes</button></span>
+                                @* <span><button type="button" class="close-btn btn btn-primary" @onclick="@OpenAllNotesDialog">View Notes</button></span> *@
                             </div>
                         </fieldset>
                     </div>
+                    <div class="col-lg-7">
+                        <h4>Notes</h4>
+                        <div class="col-lg-12 note-scroll-container">
+                            @if(Task.TaskNotes.Count == 0)
+                            {
+                                <span>There are no notes for this task.</span>
+                            }
+                            else
+                            {
+                                @foreach(var item in Task.TaskNotes)
+                                {
+                                    <div class="row">                              
+                                        <div class="note-container">
+                                            <span><textarea class="form-control" style="width: 30rem; border-style: none" @bind="@item.NoteDetail" /></span>
+                                            <span>@item.DateRaised</span>
+                                        </div>
+                                    </div>  
+                                }                                
+                            }
+                            </div>
+                        </div>
                 </div>  
                 </EditForm>              
             </div>
@@ -140,6 +161,11 @@
                 string fileExtension = Path.GetExtension(file);
                 GetAllFiles.Add($@"/{Task.TaskId.ToString()}/{fileName}");
             }
+        }
+
+        if(Task.TaskNotes == null)
+        {
+            Task.TaskNotes = new();
         }
 
     }

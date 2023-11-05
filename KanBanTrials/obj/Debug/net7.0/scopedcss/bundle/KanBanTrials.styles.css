@@ -52,6 +52,21 @@
     width: 100%;
     height: 3rem;
 }
+
+.note-container[b-196kcsygj7] {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 0.5rem;   
+}
+
+.note-scroll-container[b-196kcsygj7] {
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 500px;
+}
 /* _content/KanBanTrials/Components/ViewTaskNotes.razor.rz.scp.css */
 .note-container[b-fpeu91y88a] {
     display: flex;
@@ -110,6 +125,7 @@
 
 .cat-notes-container[b-704d56869o] {
     display: flex;
+    justify-content: end;
 }
 
 .task-note-count[b-704d56869o] {
