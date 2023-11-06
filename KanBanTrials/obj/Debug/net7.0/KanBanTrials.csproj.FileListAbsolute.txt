@@ -48,3 +48,4 @@ C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\obj\Debug\net7.0\ref\KanBa
 C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\obj\Debug\net7.0\scopedcss\Components\EditTaskDetails.razor.rz.scp.css
 C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\obj\Debug\net7.0\scopedcss\Components\AddTaskNoteDialog.razor.rz.scp.css
 C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\obj\Debug\net7.0\scopedcss\Components\ViewTaskNotes.razor.rz.scp.css
+C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\obj\Debug\net7.0\scopedcss\Pages\CompletedTasksPage.razor.rz.scp.css

@@ -75,6 +75,21 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 0.5rem;
 }
+/* _content/KanBanTrials/Pages/CompletedTasksPage.razor.rz.scp.css */
+.header-container[b-nkhcu41t6j] {
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+    background-color: #023047;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.header-title[b-nkhcu41t6j] {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: white;
+}
 /* _content/KanBanTrials/Pages/Index.razor.rz.scp.css */
 .header-container[b-n0opko7wq9] {
     display: flex;

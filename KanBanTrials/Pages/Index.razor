@@ -1,15 +1,14 @@
 ﻿@page "/"
 @using KanBanTrials.Data;
-@inject IConfiguration Configuration;
-
-
 @using KanBanTrials.Models
 @using Microsoft.AspNetCore.SignalR.Client;
+@inject IConfiguration Configuration;
 @inject NavigationManager NavManager;
 
 <div class="header-container">
     <span class="header-title">Projects Tasks Overview</span>
     <button class="btn btn-primary" style="background-color: #FB8500; color: white; font-weight: bold" @onclick="OpenEditDialog">Add New Task</button>
+    <button class="btn btn-primary" style="background-color: #FB8500; color: white; font-weight: bold" @onclick="GoToCompletedTasksPage">View Completed Tasks</button>
 </div>
 
 
@@ -176,7 +175,7 @@
         //check if any items in the list are completed and if so remove them then update both the current tasks and the completed tasks
         jsonCode.SeralizeAndSaveFileList(TaskItems, Configuration["MySettings:FileLocationCurrentJson"], true);
         await hubConnection.SendAsync("UpdateTask", NewTask);
-              
+
     }
 
     private void LoadTasks()
@@ -259,6 +258,10 @@
         SaveTasks();        
     }
 
+    private void GoToCompletedTasksPage()
+    {
+        NavManager.NavigateTo("/completed-tasks");
+    }
 
 }
 }
