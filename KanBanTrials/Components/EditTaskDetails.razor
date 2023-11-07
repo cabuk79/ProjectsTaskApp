@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Hosting;
 @inject IConfiguration Configuration;
 @inject IWebHostEnvironment hostenvironment;
+@inject NavigationManager NavManager;
 
 
 <div class="modal fade show" id="editTask" style="display:block" aria-modal="true" role="dialog">
@@ -63,8 +64,11 @@
                                     <label class="form-label">Files</label>
                                     
                                         @foreach(var file in GetAllFiles)
-                                        {                                  
-                                            <a href="@file" target=”_blank” class="form-control">@Path.GetFileNameWithoutExtension(file)</a>
+                                        {
+                                            var hrefLoc = $"/api/file/{file}";
+                                            @*  <a href="@file" target=”_blank” class="form-control">@Path.GetFileNameWithoutExtension(file)</a> *@
+                                           @*  <a href="@hrefLoc" target="_blank">@Path.GetFileNameWithoutExtension(file)</a> *@
+                                            <button @onclick="() => DownloadFile(file)">@Path.GetFileNameWithoutExtension(file)</button>
                                         }
                                    
                                 </div>
@@ -159,7 +163,8 @@
             {
                 string fileName = Path.GetFileName(file); // Get the filename with extension
                 string fileExtension = Path.GetExtension(file);
-                GetAllFiles.Add($@"/{Task.TaskId.ToString()}/{fileName}");
+                //GetAllFiles.Add($@"/{Task.TaskId.ToString()}/{fileName}");
+                GetAllFiles.Add(file);
             }
         }
 
@@ -185,10 +190,15 @@
             Task.TaskNotes = new();
         }
 
-        if(newNote.NoteDetail != null)
+        if (newNote.NoteDetail != null)
         {
             Task.TaskNotes.Add(newNote);
-        }       
+        }
+    }
+
+    public void DownloadFile(string file)
+    {
+        NavManager.NavigateTo($"/api/file/GetFile?fileName={file}", true);
     }
 
     public void ModalClose()

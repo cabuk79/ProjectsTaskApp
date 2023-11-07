@@ -16,6 +16,8 @@ builder.Services.AddResponseCompression(opts =>
 });
 //builder.Services.AddSignalR();
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +36,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+
+app.MapControllers();
 app.MapBlazorHub();
 app.MapHub<KanbanHub>("/taskupdate");
 app.MapFallbackToPage("/_Host");
