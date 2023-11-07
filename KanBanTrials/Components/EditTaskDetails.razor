@@ -62,15 +62,12 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <label class="form-label">Files</label>
-                                    
-                                        @foreach(var file in GetAllFiles)
-                                        {
-                                            var hrefLoc = $"/api/file/{file}";
-                                            @*  <a href="@file" target=”_blank” class="form-control">@Path.GetFileNameWithoutExtension(file)</a> *@
-                                           @*  <a href="@hrefLoc" target="_blank">@Path.GetFileNameWithoutExtension(file)</a> *@
-                                            <button @onclick="() => DownloadFile(file)">@Path.GetFileNameWithoutExtension(file)</button>
-                                        }
-                                   
+                                        <div class="btn-download-container">
+                                            @foreach(var file in GetAllFiles)
+                                            {
+                                                <button class="btn-file-download" @onclick="() => DownloadFile(file)">@Path.GetFileNameWithoutExtension(file)</button>
+                                            }
+                                        </div>                           
                                 </div>
                             </div>
                             <div class="row">

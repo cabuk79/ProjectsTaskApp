@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Iwr93t5Dj30q6fgLTwHrAMpgeMynVQJR+R1vmOoR6kc=",
+  "Hash": "AS6Wi8oKNAI3nlalgLceOw8rRdFc/K0IXI+tgYuzzNU=",
   "Source": "KanBanTrials",
   "BasePath": "_content/KanBanTrials",
   "Mode": "Default",
@@ -66,23 +66,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\KanBanTrials.bundle.scp.css"
-    },
-    {
-      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\417ae73c-5869-4d08-b209-b78bfae19ac5\\sbmpznyx.jpg",
-      "SourceId": "KanBanTrials",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
-      "BasePath": "_content/KanBanTrials",
-      "RelativePath": "417ae73c-5869-4d08-b209-b78bfae19ac5/sbmpznyx.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\417ae73c-5869-4d08-b209-b78bfae19ac5\\sbmpznyx.jpg"
     },
     {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
@@ -287,23 +270,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\faa906bf-53d0-48f9-a659-0cfc5d922975\\svwghcpr.jpg",
-      "SourceId": "KanBanTrials",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
-      "BasePath": "_content/KanBanTrials",
-      "RelativePath": "faa906bf-53d0-48f9-a659-0cfc5d922975/svwghcpr.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\faa906bf-53d0-48f9-a659-0cfc5d922975\\svwghcpr.jpg"
     },
     {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\favicon.png",

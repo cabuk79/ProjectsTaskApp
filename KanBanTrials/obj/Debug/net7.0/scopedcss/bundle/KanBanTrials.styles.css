@@ -67,6 +67,27 @@
     overflow-y: auto;
     height: 500px;
 }
+
+.btn-download-container[b-196kcsygj7] {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-file-download[b-196kcsygj7] {
+    margin-bottom: 0.5rem;
+    border: none;
+    background: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    padding: 0.3rem;
+}
+
+    .btn-file-download:hover[b-196kcsygj7] {
+        background-color: #0B5ED7;
+        color: white;
+        font-weight: bold;
+    }
+
+
 /* _content/KanBanTrials/Components/ViewTaskNotes.razor.rz.scp.css */
 .note-container[b-fpeu91y88a] {
     display: flex;
@@ -74,21 +95,6 @@
     margin-bottom: 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 0.5rem;
-}
-/* _content/KanBanTrials/Pages/CompletedTasksPage.razor.rz.scp.css */
-.header-container[b-nkhcu41t6j] {
-    display: flex;
-    vertical-align: middle;
-    justify-content: space-between;
-    background-color: #023047;
-    padding: 10px;
-    margin-bottom: 8px;
-}
-
-.header-title[b-nkhcu41t6j] {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color: white;
 }
 /* _content/KanBanTrials/Pages/Index.razor.rz.scp.css */
 .header-container[b-n0opko7wq9] {
