@@ -112,6 +112,31 @@
     color: white;
 }
 
+.menu-btns-container[b-n0opko7wq9] {
+    display: flex;
+    justify-content: end;
+    column-gap: 0.8rem;
+}
+
+.btn-new-task[b-n0opko7wq9] {
+    background-color: #FB8500;
+    color: #023047;
+    font-weight: bold;
+}
+
+    .btn-new-task:hover[b-n0opko7wq9] {
+        background-color: #00BFFF;
+    }
+
+.completed-tasks-btn[b-n0opko7wq9] {
+    border-color: #FB8500;
+    color: white;
+}
+
+    .completed-tasks-btn:hover[b-n0opko7wq9] {
+        background-color: #00BFFF;
+    }
+
 .dropzone-main-container[b-n0opko7wq9] {
     display: grid;
     width: 100%;

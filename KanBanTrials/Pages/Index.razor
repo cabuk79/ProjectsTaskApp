@@ -7,8 +7,12 @@
 
 <div class="header-container">
     <span class="header-title">Projects Tasks Overview</span>
-    <button class="btn btn-primary" style="background-color: #FB8500; color: white; font-weight: bold" @onclick="OpenEditDialog">Add New Task</button>
-    <button class="btn btn-primary" style="background-color: #FB8500; color: white; font-weight: bold" @onclick="GoToCompletedTasksPage">View Completed Tasks</button>
+    <div class="menu-btns-container">
+        <button class="btn btn-primary btn-new-task" @onclick="OpenEditDialog">Add New Task</button>
+        <button class="btn btn-outline-secondary completed-tasks-btn" @onclick="GoToCompletedTasksPage">
+            View Completed Tasks
+        </button>
+    </div>   
 </div>
 
 
