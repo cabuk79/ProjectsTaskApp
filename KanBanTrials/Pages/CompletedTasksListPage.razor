@@ -1,0 +1,27 @@
+﻿@page "/completed-tasks"
+
+<DataGrid Items="Parts" TItem="TestPart">
+    <Columns>
+        <DataGridColumn Name="Name" Label="Part Name" />
+        <DataGridColumn Name="Description" Label="Description of Part" />
+    </Columns>
+</DataGrid>
+
+
+
+@code {
+    public List<TestPart> Parts { get; set; } = new();
+
+    protected override async void OnInitialized()
+    {
+
+        Parts.Add(new TestPart { Name = "TestOne", Description = "This is the first part." });
+
+    }
+
+    public class TestPart
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+    }
+}

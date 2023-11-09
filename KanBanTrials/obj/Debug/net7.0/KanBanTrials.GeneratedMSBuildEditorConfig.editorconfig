@@ -20,8 +20,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGridColumn.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkQ29sdW1uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/ViewSingleNote.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3U2luZ2xlTm90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/CompletedTasksListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGxldGVkVGFza3NMaXN0UGFnZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/NotePage.razor]
