@@ -1,11 +1,22 @@
-﻿@attribute [CascadingTypeParameter(nameof(TItem))]
+﻿@using KanBanTrials.Models;
+@using KanBanTrials.Components.GenericComponent;
+@attribute [CascadingTypeParameter(nameof(TItem))]
 @typeparam TItem
 
 <div class="main-container">
-    <table>
+    <table class="data-table">
         <thead>
-            <tr>
-                @Columns(default(TItem))
+            <tr class="header-row">               
+               @* @Columns(default(TItem)) *@
+                @foreach (var columnMetadata in ColumnsMetadata)
+                {
+                    
+                    
+                    <DataGridColumnHeader
+                        ColumnMetadata="@columnMetadata"
+                        OnFilterChanged="@((filter) => UpdateColumnFilter(columnMetadata.Name, filter))"
+                    />
+                }
             </tr>
         </thead>
         <tbody>
@@ -29,12 +40,35 @@
     [Parameter]
     public RenderFragment<TItem>? Columns { get; set; }
 
+    private Dictionary<string, string?> columnFilters = new Dictionary<string, string?>();
+    private List<DataGridColumnMetadata> ColumnsMetadata { get; set; } = new List<DataGridColumnMetadata>();
+
+
+    protected override void OnInitialized()
+    {
+        // Initialize column metadata
+        ColumnsMetadata = ExtractColumnMetadata(Columns);
+    }
+
+
+    private List<DataGridColumnMetadata> ExtractColumnMetadata(RenderFragment<TItem> columns)
+    {
+        var columnMetadataList = new List<DataGridColumnMetadata>();
+
+        var dummyModel = default(TItem);
+
+        columns(dummyModel);
+
+        return columnMetadataList;
+    }
 
     #region CSS Styling
 
-     
+    
+
 
     #endregion
 
 
 }
+

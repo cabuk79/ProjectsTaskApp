@@ -20,12 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGrid.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGridColumn.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkQ29sdW1uLnJhem9y
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGridColumnHeader.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkQ29sdW1uSGVhZGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/ViewSingleNote.razor]
@@ -59,6 +55,14 @@ build_metadata.AdditionalFiles.CssScope = b-p9c6gjh28s
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/EditTaskDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xFZGl0VGFza0RldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-196kcsygj7
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-3m5sdlh22z
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/GenericComponent/DataGridColumn.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xHZW5lcmljQ29tcG9uZW50XERhdGFHcmlkQ29sdW1uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-mrepp9lr7u
 
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/ViewTaskNotes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3VGFza05vdGVzLnJhem9y

@@ -1,27 +1,65 @@
 ﻿@page "/completed-tasks"
+@inject IConfiguration Configuration;
+@using KanBanTrials.Data;
+@using KanBanTrials.Models;
 
-<DataGrid Items="Parts" TItem="TestPart">
+<DataGrid Items="TaskItems" TItem="TaskItem">
     <Columns>
-        <DataGridColumn Name="Name" Label="Part Name" />
-        <DataGridColumn Name="Description" Label="Description of Part" />
+        <DataGridColumn Name="TaskId" 
+            Label="Id" />
+        <DataGridColumn Name="TaskName" Label="Task title"  />
+        <DataGridColumn Name="Description" Label="Description" ColumnWidth="400px" />
+        <DataGridColumn Name="DateRaised" 
+            Label="Date Raised" 
+            ColumnWidth="100px"
+            FormatString="{0:d-MMM-yyyy}" />
     </Columns>
 </DataGrid>
 
 
-
 @code {
-    public List<TestPart> Parts { get; set; } = new();
+    private List<TaskItem> TaskItems = new();
+    private List<TaskItem> FilteredTasks = new();
+
+    
+
+
+    private Json jsonCode;
 
     protected override async void OnInitialized()
     {
+        TaskItems = new();
 
-        Parts.Add(new TestPart { Name = "TestOne", Description = "This is the first part." });
+        jsonCode = new();
 
+        LoadTasks();
     }
 
-    public class TestPart
+    public void LoadTasks()
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        TaskItems = jsonCode.Deseralize(Configuration["MySettings:FileLocationCurrentJson"]);
+
+       
     }
+
+    //Orders.Add(new Order { Price = 12.99m, Item = "Item One" });
+
+    //private List<Order> Orders = new();
+
+    // public class Order
+    // {
+    //     public decimal Price { get; set; }
+    //     public string Item { get; set; }
+    // }
+
 }
+
+
+
+@* <DataGrid TItem="Order" Items="Orders">
+    <Columns>
+        <DataGridColumn Name="Price" Label="Price" FormatString="{0:C}" />
+        <DataGridColumn Name="Item" Label="Item Name" />
+    </Columns>
+</DataGrid>
+ *@

@@ -2,12 +2,34 @@
 
 @if(Item == null)
 {
-    <th>@Label</th>
+    <th>
+        @Label<br />
+        @if(IsSearchable == true)
+        {
+            <div class="search-box">
+                <InputText class="form-control" @bind-Value="Filter" @onInput="FilterChanged" />
+            </div>     
+        }       
+    </th>    
 }
 else if(ChildContent == null)
 {
     var property = typeof(TItem).GetProperty(Name);
-    <td>@property.GetValue(Item).ToString()</td>
+    <td class="col-design"
+            style="--column-width-style: @ColumnWidth;">
+        @if (property.GetValue(Item) != null)
+        {
+            //check if there is formatting requested and if so format otherwise just return
+            if(FormatString != null)
+            {
+                @String.Format($"{FormatString}", property.GetValue(Item));
+            }
+            else
+            {
+                @property.GetValue(Item).ToString()                
+            }
+        }
+    </td>
 }
 else
 {
@@ -24,4 +46,32 @@ else
     public TItem Item { get; set; }
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+    [Parameter]
+    public string? FormatString { get; set; }
+    [Parameter]
+    public bool IsSearchable { get; set; } = false;
+    [Parameter]
+    public string? Filter { get; set; }
+
+
+    [Parameter]
+    public EventCallback<string?> OnFilterChanged { get; set; }
+
+    private void FilterChanged(ChangeEventArgs e)
+    {
+        OnFilterChanged.InvokeAsync(Filter);
+    }
+ 
+
+    #region CSS Styling
+
+    [Parameter]
+    public string ColumnWidth { get; set; }
+    string ColumnWidthStyle => string.IsNullOrWhiteSpace(ColumnWidth) ? "" : "--column-width-style:" + ColumnWidth;
+
+    //style="--column-width-style: @ColumnWidth;"
+
+    #endregion
+
+
 }
