@@ -1,0 +1,77 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = KanBanTrials
+build_property.RootNamespace = KanBanTrials
+build_property.ProjectDir = C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\cabuk\source\repos\KanBanTrials\KanBanTrials
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/ViewSingleNote.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3U2luZ2xlTm90ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/NotePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90ZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/AddNewTask.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBZGROZXdUYXNrLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-t057bnfk3t
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/AddTaskNoteDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBZGRUYXNrTm90ZURpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-p9c6gjh28s
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/EditTaskDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xFZGl0VGFza0RldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-196kcsygj7
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Components/ViewTaskNotes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3VGFza05vdGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-fpeu91y88a
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-n0opko7wq9
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Shared/DropZone.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERyb3Bab25lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-704d56869o
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cu95b6crt0
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-gcqx81dz1f
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

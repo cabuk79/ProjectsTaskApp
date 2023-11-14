@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Iwr93t5Dj30q6fgLTwHrAMpgeMynVQJR+R1vmOoR6kc=",
+  "Hash": "OydGbz1s+3wYY645FKVJ+i87IOaExima8oiHrc7ULjU=",
   "Source": "KanBanTrials",
   "BasePath": "_content/KanBanTrials",
   "Mode": "Default",
@@ -68,23 +68,6 @@
       "OriginalItemSpec": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\KanBanTrials.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\417ae73c-5869-4d08-b209-b78bfae19ac5\\sbmpznyx.jpg",
-      "SourceId": "KanBanTrials",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
-      "BasePath": "_content/KanBanTrials",
-      "RelativePath": "417ae73c-5869-4d08-b209-b78bfae19ac5/sbmpznyx.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\417ae73c-5869-4d08-b209-b78bfae19ac5\\sbmpznyx.jpg"
-    },
-    {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "KanBanTrials",
       "SourceType": "Discovered",
@@ -117,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "KanBanTrials",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
+      "BasePath": "_content/KanBanTrials",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
@@ -221,23 +221,6 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "KanBanTrials",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
-      "BasePath": "_content/KanBanTrials",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
-    },
-    {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "KanBanTrials",
       "SourceType": "Discovered",
@@ -287,23 +270,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\faa906bf-53d0-48f9-a659-0cfc5d922975\\svwghcpr.jpg",
-      "SourceId": "KanBanTrials",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\",
-      "BasePath": "_content/KanBanTrials",
-      "RelativePath": "faa906bf-53d0-48f9-a659-0cfc5d922975/svwghcpr.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\faa906bf-53d0-48f9-a659-0cfc5d922975\\svwghcpr.jpg"
     },
     {
       "Identity": "C:\\Users\\cabuk\\source\\repos\\KanBanTrials\\KanBanTrials\\wwwroot\\favicon.png",
