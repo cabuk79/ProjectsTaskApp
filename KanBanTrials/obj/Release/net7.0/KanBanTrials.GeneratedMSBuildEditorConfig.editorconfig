@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3U2luZ2xlTm90ZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/CompletedTasksListPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGxldGVkVGFza3NMaXN0UGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/cabuk/source/repos/KanBanTrials/KanBanTrials/Pages/NotePage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90ZVBhZ2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

@@ -12,6 +12,12 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.12" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="Quick.AspNetCore.Components.Web.Extensions" Version="6.0.2" />
+    <PackageReference Include="Radzen.Blazor" Version="4.20.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\GenericComponent\" />
+    <Folder Include="wwwroot\Icons\" />
   </ItemGroup>
 
 </Project>

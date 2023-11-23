@@ -14,6 +14,7 @@ namespace KanBanTrials.Models
         public string Catagory { get; set; }
         public string Status { get; set; }
         public string OverDueStatus { get; set; }
+        public DateOnly? DateDue { get; set; }
         public List<TaskNote> TaskNotes { get; set; }
 
     }

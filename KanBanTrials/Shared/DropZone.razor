@@ -4,8 +4,6 @@
 @inject NavigationManager NavManager;
 @using KanBanTrials.Data;
 @inject IConfiguration Configuration;
-@* @inject IJSRuntime JSRuntime
-@inject IHubContext<KanbanHub> KanbanHubContext *@
 
 <div class="task-main-container">
     <div class="task-header-container"><h4>@Catagory.ToString()</h4><span>(@TaskItems.Where(q => q.Catagory == Catagory.ToString()).Count())</span></div>
@@ -22,8 +20,15 @@
                         @ondragstart="@(() => OnDragStartHandler(item))"
                         @onclick="@(() => OpenEditDialog(item))">
                         <div class="drop-zone-content">
-                            <span>@item.TaskName</span>
+                            <span>@item.TaskName</span>                           
                             <div class="cat-notes-container">
+                               
+                                @if (item.DateDue != null)
+                                {
+                                    <div class="due-date-container">
+                                        <span class="due-date-text">Due: @item.DateDue</span>
+                                    </div>
+                                }
                                 <div class="cat-status-container">
                                     <span class="status badge badge-secondary">@item.Status</span>
                                     <span class="cata badge badge-secondary">@item.Catagory</span>

@@ -70,6 +70,11 @@
     padding: 0.5em;
 }
 
+.due-date-text {
+    font-size: 0.8rem;
+    padding-right: 1rem;
+}
+
 .status {
     background-color: deepskyblue;
     padding: 0.5em;
