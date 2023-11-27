@@ -26,7 +26,14 @@
                                 @if (item.DateDue != null)
                                 {
                                     <div class="due-date-container">
-                                        <span class="due-date-text">Due: @item.DateDue</span>
+                                        @if(DateOnly.FromDateTime(DateTime.Now) >= item.DateDue)
+                                        {
+                                            <span class="due-date-text due-date-text-overdue badge">Due: @item.DateDue</span>
+                                        }
+                                        else
+                                        {
+                                                <span class="due-date-text due-date-text-ontime badge">Due: @item.DateDue</span>
+                                        }                                        
                                     </div>
                                 }
                                 <div class="cat-status-container">
@@ -96,7 +103,7 @@
 
         jsonCode = new();
 
-        
+
     }
 
 

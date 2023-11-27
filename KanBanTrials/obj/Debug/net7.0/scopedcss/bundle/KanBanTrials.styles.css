@@ -208,9 +208,20 @@ label[b-t057bnfk3t] {
 }
 
 .due-date-text[b-704d56869o] {
-    font-size: 0.8rem;
-    padding-right: 1rem;
+    margin-right: 5px;
+    padding: 0.5em;
 }
+
+.due-date-text-overdue[b-704d56869o] {
+    background-color: red;
+    color: white;
+}
+
+.due-date-text-ontime[b-704d56869o] {
+    background-color: green;
+    color: white;
+}
+
 
 .status[b-704d56869o] {
     background-color: deepskyblue;

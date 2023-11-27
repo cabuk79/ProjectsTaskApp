@@ -71,9 +71,20 @@
 }
 
 .due-date-text {
-    font-size: 0.8rem;
-    padding-right: 1rem;
+    margin-right: 5px;
+    padding: 0.5em;
 }
+
+.due-date-text-overdue {
+    background-color: red;
+    color: white;
+}
+
+.due-date-text-ontime {
+    background-color: green;
+    color: white;
+}
+
 
 .status {
     background-color: deepskyblue;

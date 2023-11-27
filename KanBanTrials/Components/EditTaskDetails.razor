@@ -59,6 +59,12 @@
                                     <InputTextArea class="task-description-span form-control" @bind-Value="@Task.Description"></InputTextArea>
                                 </div>
                             </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label class="form-label">Due Date (if required)</label>
+                                        <InputDate class="form-control" @bind-Value="Task.DateDue" />
+                                    </div>
+                                </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <label class="form-label">Files</label>
